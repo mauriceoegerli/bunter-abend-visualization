@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div>The lager opinion</div>
+  <div><p>The lager opinion</p></div>
 </template>
 
 <style lang="scss">
