@@ -9,6 +9,7 @@
     "nuxt3": "latest"
   },
   "dependencies": {
+    "papaparse": "^5.3.1",
     "sass": "^1.45.1"
   }
 }

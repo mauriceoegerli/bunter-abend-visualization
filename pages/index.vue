@@ -1,9 +1,21 @@
-<script setup>
-</script>
-
 <template>
-  <div><p>The lager opinion</p></div>
+  <div></div>
 </template>
 
-<style lang="scss">
-</style>
+<script>
+import Papa from 'papaparse';
+
+export default defineComponent({
+  setup() {
+    onMounted(() => {
+      const teilnehmerData = window.localStorage.getItem('teilnehmerData');
+      const teilnehmerDataObj = Papa.parse(teilnehmerData);
+      console.log(teilnehmerDataObj);
+    });
+
+    return {};
+  }
+});
+</script>
+
+<style lang="scss"></style>
