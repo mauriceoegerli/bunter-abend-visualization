@@ -14,12 +14,7 @@
       </div>
     </div> -->
     <ClientOnly>
-      <bar-chart
-        :data="[
-          ['Work', 32],
-          ['Play', 1492]
-        ]"
-      ></bar-chart>
+      <bar-chart :data="{ ramon: '7h', maurice: 3 }"></bar-chart>
     </ClientOnly>
   </div>
 </template>
