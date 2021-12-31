@@ -12,7 +12,7 @@
         <div
           class="chart-bar"
           :style="{
-            width: `${(100 / maxValue) * value[1]}%`,
+            width: `calc(${(100 / maxValue) * value[1]}% - 40px)`,
             'background-color': colors[index]
           }"
         >
@@ -82,10 +82,14 @@ export default defineComponent({
 
     .chart-bar-container {
       height: 100%;
+
       .chart-bar {
         position: relative;
         height: 100%;
         max-height: 80px;
+        border-radius: 10px;
+        margin: 0 20px;
+        box-sizing: border-box;
 
         .chart-label {
           position: absolute;
