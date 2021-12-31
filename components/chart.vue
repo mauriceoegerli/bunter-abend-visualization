@@ -16,7 +16,7 @@
             'background-color': colors[index]
           }"
         >
-          <p class="chart-label">{{ value[0] }}</p>
+          <p class="chart-label">{{ isNaN(value[0]) ? value[0] : `${value[0]}h` }}</p>
           <div class="chart-percent">
             <p>{{ value[1] }}</p>
           </div>
