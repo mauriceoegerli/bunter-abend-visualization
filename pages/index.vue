@@ -46,7 +46,15 @@ export default defineComponent({
         }
       ]
     };
+    const getDataForQuestion = (index) => {
+      const questionIndex = index + 1;
+      const teilnehmerData = window.localStorage.getItem('teilnehmerData');
+      const teilnehmerDataObj = Papa.parse(teilnehmerData);
+      console.log(teilnehmerDataObj);
+      const returnData = [[]];
 
+      const data = "[['Work', 32],['Play', 1492]]";
+    };
     return { csvData };
   }
 });
