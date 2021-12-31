@@ -15,6 +15,7 @@ html,
 body,
 #__nuxt {
   margin: 0;
+  font-family: sans-serif;
 }
 
 .default {
