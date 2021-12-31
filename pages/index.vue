@@ -64,6 +64,7 @@ export default defineComponent({
   display: flex;
   flex-direction: row;
   overflow-x: scroll;
+
   .item {
     scroll-snap-align: start;
     height: 98vh;

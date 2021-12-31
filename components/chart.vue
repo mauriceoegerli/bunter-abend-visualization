@@ -1,21 +1,25 @@
 <template>
   <div class="chart">
-    <p class="chart-title"></p>
+    <p class="chart-title">
+      {{ chartData.title }}
+    </p>
     <div
       class="chart-item"
-      v-for="(value, name, index) in chartData.data"
-      :key="`chart-item-${name}`"
+      v-for="(value, index) in sortedData"
+      :key="`chart-item-${value[0]}`"
     >
       <div class="chart-bar-container">
         <div
           class="chart-bar"
           :style="{
-            width: `${(100 / maxValue) * value}%`,
+            width: `${(100 / maxValue) * value[1]}%`,
             'background-color': colors[index]
           }"
         >
-          <p class="chart-label">{{ name }}</p>
-          <p class="chart-percent">{{ value }}</p>
+          <p class="chart-label">{{ value[0] }}</p>
+          <div class="chart-percent">
+            <p>{{ value[1] }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -34,6 +38,10 @@ export default defineComponent({
       return max;
     });
 
+    const sortedData = Object.entries(props.chartData.data).sort(
+      (a, b) => b[1] - a[1]
+    );
+
     const colors = [
       '#8cb3a7',
       '#8382ff',
@@ -47,7 +55,8 @@ export default defineComponent({
 
     return {
       maxValue,
-      colors
+      colors,
+      sortedData
     };
   }
 });
@@ -59,11 +68,18 @@ export default defineComponent({
   flex-direction: column;
   justify-content: space-between;
   width: 100vw;
-  height: 100vh;
+  height: 99%;
+
+  .chart-title {
+    font-size: 3rem;
+    margin: 0;
+    margin: 10px 0 10px 15px;
+  }
 
   .chart-item {
     flex-grow: 1;
     padding: 20px 0;
+
     .chart-bar-container {
       height: 100%;
       .chart-bar {
@@ -76,7 +92,6 @@ export default defineComponent({
           font-size: 50px;
           height: 100%;
           margin: 0 0 0 15px;
-
           width: 100vw;
         }
 
@@ -84,8 +99,21 @@ export default defineComponent({
           position: absolute;
           font-size: 50px;
           height: 100%;
-          left: 87vw;
+          left: calc(94vw - 50px);
+          width: 70px;
+          height: 70px;
+          display: block;
           margin: 0 0 0 15px;
+
+          box-sizing: border-box;
+          border-radius: 50px;
+
+          p {
+            margin: auto;
+            display: block;
+            width: fit-content;
+            height: fit-content;
+          }
         }
       }
     }
