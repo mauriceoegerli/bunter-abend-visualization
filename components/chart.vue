@@ -43,7 +43,7 @@ export default defineComponent({
     );
 
     const colors = [
-      '#8cb3a7',
+      '#006400',
       '#8382ff',
       '#fcb9f7',
       '#e6e78c',
