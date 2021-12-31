@@ -43,14 +43,14 @@ export default defineComponent({
     );
 
     const colors = [
-      '#006400',
-      '#8382ff',
-      '#fcb9f7',
-      '#e6e78c',
-      '#e6e78c',
-      '#f692eb',
-      '#89ce9e',
-      '#b7b3f5'
+      'rgba(0,100,0,0.8)',
+      'rgba(0,100,0,0.7)',
+      'rgba(0,100,0,0.6)',
+      'rgba(0,100,0,0.5)',
+      'rgba(0,100,0,0.4)',
+      'rgba(0,100,0,0.3)',
+      'rgba(0,100,0,0.2)',
+      'rgba(0,100,0,0.1)'
     ];
 
     return {
