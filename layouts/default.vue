@@ -1,8 +1,5 @@
 <template>
   <div class="default">
-    <div class="header">
-      <h1>The lager opinion</h1>
-    </div>
     <slot />
   </div>
 </template>
@@ -20,5 +17,18 @@ body,
 }
 
 .default {
+  .header {
+    width: 100%;
+    height: 80px;
+    backdrop-filter: blur(10px) brightness(90%);
+    padding: 11px;
+    box-sizing: border-box;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+    h1 {
+      margin: 0;
+      font-size: 40px;
+    }
+  }
 }
 </style>
