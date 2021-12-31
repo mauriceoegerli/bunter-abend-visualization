@@ -1,20 +1,11 @@
 <template>
   <div class="homepage">
-    <!-- <div class="visualization-1">
-      <div
-        class="balken"
-        v-for="(percent, index) in testdata"
-        :key="index"
-        :style="{ width: `${percent}%` }"
-      ></div>
-    </div>
-    <div class="visualization-2">
-      <div class="item" v-for="(percent, index) in testdata2" :key="index">
-        {{ percent }}
-      </div>
-    </div> -->
     <ClientOnly>
-      <bar-chart :data="{ ramon: '7h', maurice: 3 }"></bar-chart>
+      <bar-chart
+        :data="getDataForQuestion(i).data"
+        v-for="i in 18"
+        :key="`question-${i}`"
+      ></bar-chart>
     </ClientOnly>
   </div>
 </template>
@@ -46,11 +37,25 @@ export default defineComponent({
       const teilnehmerData = window.localStorage.getItem('teilnehmerData');
       const teilnehmerDataObj = Papa.parse(teilnehmerData);
       console.log(teilnehmerDataObj);
-      const returnData = [[]];
-
-      const data = "[['Work', 32],['Play', 1492]]";
+      const returnData = { data: {}, title: 'null' };
+      let description = true;
+      teilnehmerDataObj.data.forEach((answer) => {
+        debugger;
+        if (description) {
+          returnData.title = answer[questionIndex];
+        } else {
+          if (returnData.data[answer[questionIndex]]) {
+            returnData.data[answer[questionIndex]] =
+              returnData.data[answer[questionIndex]] + 1;
+          } else {
+            returnData.data[answer[questionIndex]] = 1;
+          }
+        }
+        description = false;
+      });
+      return returnData;
     };
-    return { csvData };
+    return { csvData, getDataForQuestion };
   }
 });
 </script>
