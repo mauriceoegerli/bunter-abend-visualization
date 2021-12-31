@@ -1,4 +1,4 @@
-import VueChartkick from 'vue-chartkick';
+import VueChartkick from '../chartkick';
 import 'chartkick/chart.js';
 
 import { defineNuxtPlugin } from '#app';

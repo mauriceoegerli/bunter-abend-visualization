@@ -14,6 +14,7 @@ export default defineComponent({
 html,
 body,
 #__nuxt {
+  margin: 0;
 }
 
 .default {

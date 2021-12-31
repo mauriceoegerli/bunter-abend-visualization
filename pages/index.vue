@@ -1,12 +1,10 @@
 <template>
   <div class="homepage">
-    <ClientOnly>
-      <bar-chart
-        :data="getDataForQuestion(i).data"
-        v-for="i in 18"
-        :key="`question-${i}`"
-      ></bar-chart>
-    </ClientOnly>
+    <div class="item" v-for="i in 11" :key="`question-${i}`">
+      <ClientOnly>
+        <chart :chartData="getDataForQuestion(i)" />
+      </ClientOnly>
+    </div>
   </div>
 </template>
 
@@ -40,7 +38,7 @@ export default defineComponent({
       const returnData = { data: {}, title: 'null' };
       let description = true;
       teilnehmerDataObj.data.forEach((answer) => {
-        debugger;
+        // debugger;
         if (description) {
           returnData.title = answer[questionIndex];
         } else {
@@ -62,27 +60,14 @@ export default defineComponent({
 
 <style lang="scss">
 .homepage {
-  .visualization-1 {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-
-    .balken {
-      background-color: blue;
-      flex-grow: 1;
-      margin: 20px 0;
-      height: 80px;
-    }
-  }
-  .visualization-2 {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-
-    .item {
-      padding: 10px;
-      box-shadow: 0 0 5px black;
-    }
+  scroll-snap-type: x mandatory;
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  .item {
+    scroll-snap-align: start;
+    height: 98vh;
+    width: 100vw;
   }
 }
 </style>
