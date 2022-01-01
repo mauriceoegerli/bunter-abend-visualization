@@ -4,12 +4,12 @@
       <div class="start-container">
         <button class="play-btn" @click="onBtnPlay">play</button>
         <div class="start-logo">
-          <p>The skilager</p>
-          <p>opinion</p>
+          <img src="/ckjs-logo.png" />
+          <p>The skilager opinion</p>
         </div>
       </div>
     </div>
-    <div class="item" v-for="i in 11" :key="`question-${i}`">
+    <div class="item" v-for="i in 12" :key="`question-${i}`">
       <ClientOnly>
         <chart :chartData="getDataForQuestion(i)" />
       </ClientOnly>
@@ -44,7 +44,7 @@ export default defineComponent({
       ]
     };
     const getDataForQuestion = (index) => {
-      const questionIndex = index + 1;
+      const questionIndex = index;
       const teilnehmerData = window.localStorage.getItem('teilnehmerData');
       const teilnehmerDataObj = Papa.parse(teilnehmerData);
       console.log(teilnehmerDataObj);
@@ -54,7 +54,7 @@ export default defineComponent({
         // debugger;
         if (description) {
           returnData.title = answer[questionIndex];
-        } else {
+        } else if (answer[questionIndex]) {
           if (returnData.data[answer[questionIndex]]) {
             returnData.data[answer[questionIndex]] =
               returnData.data[answer[questionIndex]] + 1;
@@ -83,6 +83,11 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+@font-face {
+  font-family: 'Summit';
+  src: local('Summit'),
+    url(/Summit_TrueType/SummitRegular-Display.ttf) format('truetype');
+}
 .homepage {
   scroll-snap-type: x mandatory;
   display: flex;
@@ -107,7 +112,15 @@ export default defineComponent({
 
       .start-logo {
         margin: auto;
-        font-size: 4rem;
+        font-size: 5rem;
+        font-family: 'Summit';
+        display: flex;
+        flex-direction: column;
+
+        img {
+          width: 700px;
+          margin: 0 auto;
+        }
       }
     }
   }
