@@ -1,5 +1,14 @@
 <template>
   <div class="homepage">
+    <div class="item fake-item">
+      <div class="start-container">
+        <button class="play-btn" @click="onBtnPlay">play</button>
+        <div class="start-logo">
+          <p>The skilager</p>
+          <p>opinion</p>
+        </div>
+      </div>
+    </div>
     <div class="item" v-for="i in 11" :key="`question-${i}`">
       <ClientOnly>
         <chart :chartData="getDataForQuestion(i)" />
@@ -13,12 +22,16 @@ import Papa from 'papaparse';
 
 export default defineComponent({
   setup() {
+    const audio = ref(null);
+    const audioPlaying = ref(false);
+
     onMounted(() => {
       const teilnehmerData = window.localStorage.getItem('teilnehmerData');
       if (teilnehmerData) {
         const teilnehmerDataObj = Papa.parse(teilnehmerData);
         console.log(teilnehmerDataObj);
       }
+      audio.value = new Audio('/soundtrack.mp3');
     });
 
     const csvData = {
@@ -53,7 +66,18 @@ export default defineComponent({
       });
       return returnData;
     };
-    return { csvData, getDataForQuestion };
+
+    const onBtnPlay = () => {
+      if (audioPlaying.value) {
+        audio.value.pause();
+        audioPlaying.value = false;
+      } else {
+        audio.value.play();
+        audioPlaying.value = true;
+      }
+    };
+
+    return { csvData, getDataForQuestion, onBtnPlay, audio };
   }
 });
 </script>
@@ -64,6 +88,29 @@ export default defineComponent({
   display: flex;
   flex-direction: row;
   overflow-x: scroll;
+
+  .fake-item {
+    width: 100vw;
+
+    .start-container {
+      width: 100vw;
+      height: 100%;
+      display: flex;
+      position: relative;
+
+      .play-btn {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        opacity: 0;
+      }
+
+      .start-logo {
+        margin: auto;
+        font-size: 4rem;
+      }
+    }
+  }
 
   .item {
     scroll-snap-align: start;
